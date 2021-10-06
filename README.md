@@ -15,4 +15,5 @@
 - ClassList.remove
 - querySelector
 - addEventListener
+
 Ссылка на [Проект](https://myackotka93.github.io/mesto/index.html)
