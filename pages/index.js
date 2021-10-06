@@ -32,8 +32,10 @@ function popupSubmitHandler(evt) {
   job.textContent = jobInput.value;
 
   closePopup();
+
 }
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 popupContainer.addEventListener('submit', popupSubmitHandler);
+
