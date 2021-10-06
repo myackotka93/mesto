@@ -15,4 +15,4 @@
 - 8.querySelector
 - 9.addEventListener
 
-Ссылка на Проект [Проект](https://myackotka93.github.io/mesto/index.html)
+Ссылка на [Проект](https://myackotka93.github.io/mesto/index.html)
