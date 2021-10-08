@@ -21,9 +21,12 @@
 }
 
 
-@media screen and (max-width: 826px) {
+@media screen and (max-width: 955px) {
   .popup__item {
     width: 238px;
-    margin: 30px auto 0 auto;
+  }
+
+  .popup__item:first-of-type {
+    margin: 75px auto 0 auto;
   }
 }

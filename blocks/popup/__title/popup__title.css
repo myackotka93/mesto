@@ -8,7 +8,7 @@
   margin: 0;
 }
   
-@media (max-width: 826px) {
+@media (max-width: 955px) {
   .popup__title {
     font-size: 18px;
     line-height: 22px;
