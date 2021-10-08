@@ -6,6 +6,7 @@
   border-radius: 2px;
   background-color:#000000;
   transition: opacity .3s linear;
+  padding: 0;
 }
   
 .profile__add-button:hover {
@@ -13,9 +14,15 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 935px) {
+@media screen and (max-width: 954px) {
   .profile__add-button {
-    width: 100%;
+    width: 282px;
     margin: 30px 0 0 0;
   }
 }
+
+
+
+
+
+

@@ -9,7 +9,7 @@
   margin: 22.25px auto 0 auto;
   }
 
-@media screen and (min-width: 827px) {
+@media screen and (min-width: 955px) {
   .profile__info {
     row-gap: 16px;
     column-gap: 18px;

@@ -13,8 +13,6 @@ let job = document.querySelector('.profile__subtitle');
 
 function openPopup() {
   popup.classList.add('popup_opened');
-  let nameInput = document.querySelector('.popup__item_type_name');
-  let jobInput = document.querySelector('.popup__item_type_job'); 
 
   jobInput.value = job.textContent;
   nameInput.value = name.textContent;
@@ -37,5 +35,5 @@ function popupSubmitHandler(evt) {
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-popupContainer.addEventListener('submit', popupSubmitHandler);
+formElement.addEventListener('submit', popupSubmitHandler);
 

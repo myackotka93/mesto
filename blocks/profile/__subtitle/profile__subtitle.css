@@ -6,7 +6,18 @@
     overflow: hidden;
     font-family:"Inter", "Arial", sans-serif;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 21.78px;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
   }
+
+  @media screen and (min-width: 955px) {
+    .profile__subtitle {
+      font-size: 18px;
+      line-height: 22px;
+      max-width: 282px; 
+      text-align: start;    
+    }
+  }
+  
   

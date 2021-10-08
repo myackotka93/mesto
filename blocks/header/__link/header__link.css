@@ -12,7 +12,7 @@
   opacity: 0.5;
 }
 
-@media screen and (min-width: 827px) {
+@media screen and (min-width: 955px) {
   .header__link {
     margin: 0 0 41px 0;
     width: 142px;
