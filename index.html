@@ -33,65 +33,7 @@
 
     <section class="cards">
       <ul class="cards__container">
-        <li class="card">
-          <img src="./images/dombai.png" alt="Домбай" class="card__image">
-          <div class="card__discription">
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__button">
-              <img src="./images/like.svg" alt="Лайк" class="card__like">
-            </button>
-          </div>
-        </li>  
-     
-        <li class="card">
-          <img src="./images/teriberka.jpg" alt="Териберка" class="card__image">
-          <div class="card__discription">
-            <h2 class="card__title">Териберка</h2>
-            <button type="button" class="card__button">
-              <img src="./images/like.svg" alt="Лайк" class="card__like">
-            </button>
-          </div>
-        </li>
-      
-        <li class="card">
-          <img src="./images/mysfiolent.jpg" alt="Мфс Фиолент" class="card__image">
-          <div class="card__discription">
-            <h2 class="card__title">Мыс Фиолент</h2>
-            <button type="button" class="card__button">
-              <img src="./images/like.svg" alt="Лайк" class="card__like">
-            </button>
-          </div>
-        </li>
-     
-        <li class="card">
-          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="card__image">
-          <div class="card__discription">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__button">
-              <img src="./images/like.svg" alt="Лайк" class="card__like">
-            </button>
-          </div>
-        </li>
-       
-        <li class="card">
-          <img src="./images/ladoga.jpg" alt="Ладожские шхеры" class="card__image">
-          <div class="card__discription">
-            <h2 class="card__title">Ладожские шхеры</h2>
-            <button type="button" class="card__button">
-              <img src="./images/like.svg" alt="Лайк" class="card__like">
-            </button>
-          </div>
-        </li>
-   
-        <li class="card">
-          <img src="./images/karachaevsk.png" alt="Карачаево-Черкесск" class="card__image">
-          <div class="card__discription">
-            <h2 class="card__title">Карачаево-Черкесск</h2>
-            <button type="button" class="card__button">
-              <img src="./images/like.svg" alt="Лайк" class="card__like">
-            </button>
-          </div>
-        </li>
+
       </ul>
     </section>
   </main>
@@ -100,9 +42,24 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
+  <template id="card__template">
+    <li class="card">
+      <button type="button" class="card__button-delete">
+        <img class="card__delete" src="./images/delete.svg" alt="Удалить">
+    </button>
+      <img src="#" alt="Домбай" class="card__image">
+      <div class="card__discription">
+        <h2 class="card__title">Домбай</h2>
+        <button type="button" class="card__button-like">
+
+        </button>
+      </div>
+    </li>  
+  </template> 
+
+  <section class="popup popup_type_edit">
     <div class="popup__container">
-    <form class="popup__form" name="edit-form">
+    <form class="popup__form popup__form_type_popup_type_edit" name="edit-form">
       <h2 class="popup__title">Редактировать профиль</h2>
           <input name="name" id="popup-name" class="popup__item popup__item_type_name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
           <input name="job" id="popup-job" class="popup__item popup__item_type_job" type="text" placeholder="Вид деятельности" minlength="2" maxlength="100" required>
@@ -110,6 +67,26 @@
       </form>
         <button class="popup__close-button" type="button"></button>
     </div>  
+  </section>
+
+  <section class="popup popup_type_add">
+    <div class="popup__container">
+    <form class="popup__form popup__form_type_add" name="add-form">
+      <h2 class="popup__title">Новое место</h2>
+          <input name="place" id="popup-place" class="popup__item popup__item_type_place" type="text" placeholder="Название" minlength="2" maxlength="40" required>
+          <input name="image" id="popup-image" class="popup__item popup__item_type_image" type="text" placeholder="Ссылка на картинку" minlength="2" maxlength="200" required>
+        <button  class="popup__save-button" type="submit">Создать</button>
+      </form>
+        <button class="popup__close-button" type="button"></button>
+    </div>  
+  </section>
+
+  <section class="popup popup_type_image">
+    <div class="popup__image-container">
+      <img class="popup__image" src="#" alt="#" />
+      <h3 class="popup__image-title"></h3>
+      <button class="popup__close-button" type="button"></button>
+    </div>
   </section>
   
   <script src="./pages/index.js"></script> 

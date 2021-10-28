@@ -1,13 +1,15 @@
-.card__button {
+.card__button-like {
   margin: auto 30px auto 0;
-  background: none;
+  background: url('../../../images/like.svg') center no-repeat;
   border: none;
   padding: 0;
   outline: none;
   transition: opacity .3s ease-in-out;
+  width: 22px;
+  height: 19px;
 }
 
-.card__button:hover {
+.card__button-like:hover {
   opacity: 0.5;
   cursor: pointer;
 }
