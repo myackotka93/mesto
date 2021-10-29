@@ -109,14 +109,14 @@ function cardFormSubmit(evt) {
   const newCardLink = imageInput.value;
   const newCard = createCard({ name: newCardName, link: newCardLink});
   cardList.prepend(newCard);
-  closePopup(popupAddCard);
+  closePopup(evt);
 }
 
 function profileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(popupEditProfile);
+  closePopup(evt);
 }
 
 editButton.addEventListener('click', openEditProfilePopup);
