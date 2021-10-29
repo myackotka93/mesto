@@ -1,4 +1,4 @@
-# Проект Яндекс. Практикума №4: Место
+# Проект Яндекс. Практикума №4,5: Место
 
 #### Задачи:
 - Сделать макет согласно проекту * [Ссылка на проект в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
@@ -15,5 +15,6 @@
 - ClassList.remove
 - querySelector
 - addEventListener
+- map и forEach
 
 Ссылка на [Проект](https://myackotka93.github.io/mesto/index.html)
