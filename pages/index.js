@@ -85,8 +85,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-function closePopup(evt) {    
-  const popupToClose = evt.target.closest('.popup'); 
+function closePopup(popup) {    
+  const popupToClose = popup.target.closest('.popup'); 
   popupToClose.classList.remove('popup_opened');    
 }
 
