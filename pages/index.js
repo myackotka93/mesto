@@ -86,8 +86,7 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {    
-  const popupToClose = popup.target.closest('.popup'); 
-  popupToClose.classList.remove('popup_opened');    
+  popup.classList.remove('popup_opened');    
 }
 
 function openPicture(item) {
@@ -109,14 +108,14 @@ function cardFormSubmit(evt) {
   const newCardLink = imageInput.value;
   const newCard = createCard({ name: newCardName, link: newCardLink});
   cardList.prepend(newCard);
-  closePopup(evt);
+  closePopup(popupAddCard);
 }
 
 function profileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(evt);
+  closePopup(popupEditProfile);
 }
 
 editButton.addEventListener('click', openEditProfilePopup);
@@ -126,9 +125,13 @@ addButton.addEventListener('click', () => {
 });
 
 closeButtons.forEach(function(item){ 
-  item.addEventListener('click', closePopup); 
-});
+  item.addEventListener('click', event => {
+    const popup = event.target.closest('.popup');
+    closePopup(popup);
+  });
+}); 
 
+ 
 formElement.addEventListener('submit', profileFormSubmit);
 cardElement.addEventListener('submit', cardFormSubmit);
 
