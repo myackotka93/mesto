@@ -69,4 +69,4 @@ function enableValidation() {
     });
 }
 
-enableValidation();
+enableValidation(validationConfig);

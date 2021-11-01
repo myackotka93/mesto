@@ -27,46 +27,18 @@ const imageView = document.querySelector('.popup__image');
 const cardTemplate = document.querySelector('#card__template').content;
 const cardList = document.querySelector('.cards__container');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Ладожские шхеры',
-    link: './images/ladoga.jpg'
-  },
-  {
-    name: 'Мыс Фиолент',
-    link: './images/mysfiolent.jpg'
-  },
-  {
-    name: 'Териберка',
-    link: './images/teriberka.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+initialCards.forEach((data) => {
+  cardList.append(createCard(data));
+});
 
-function addCardItem() {
-  const addCard = initialCards.map(createCard);
-  cardList.append(...addCard);
-}
-
-function createCard(item) {
+function createCard(data) {
   const newCard = cardTemplate.cloneNode(true);
   const cardTitle = newCard.querySelector('.card__title');
-  cardTitle.textContent = item.name;
+  cardTitle.textContent = data.name;
 
   const cardImage = newCard.querySelector('.card__image');
-  cardImage.src = item.link;
-  cardImage.alt = item.name;
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
 
   newCard.querySelector('.card__button-like').addEventListener('click', (event) => {
     event.target.classList.toggle('card__button-like_active');
@@ -76,7 +48,7 @@ function createCard(item) {
     event.target.closest('.card').remove();
   });
 
-  cardImage.addEventListener('click', () => openPicture(item));
+  cardImage.addEventListener('click', () => openPicture(data));
 
   return newCard;
 }
@@ -84,26 +56,15 @@ function createCard(item) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  // document.addEventListener('click', clickOutside);
   document.addEventListener('keydown', escapePopup);
-  const form = popup.querySelector('.popup__form');
 
-  if (form) {
-    checkValidityForm(form);
-  }
+
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  // document.removeEventListener('click', clickOutside);
   document.removeEventListener('keydown', escapePopup);
 }
-
-// function clickOutside(evt) {
-//   if (evt.target.classList.contains('popup_opened')) {
-//     closePopup(evt.target);
-//   }
-// }
 
 function escapePopup(evt) {
   if (evt.key === "Escape") {
@@ -123,6 +84,10 @@ function openEditProfilePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEditProfile);
+  const form = popup.querySelector('.popup__form');
+  if (form) {
+    checkValidityForm(form);
+  }
 }
 
 function cardFormSubmit(evt) {
