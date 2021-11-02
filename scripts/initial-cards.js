@@ -1,7 +1,7 @@
 const initialCards = [
     {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+      name: 'J. Bond',
+      link: 'https://pbs.twimg.com/media/EKXfXzMWwAAlgbs.jpg'
     },
     {
       name: 'Ладожские шхеры',

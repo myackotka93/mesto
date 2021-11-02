@@ -46,7 +46,7 @@
 @import url("../blocks/popup/__close-button/popup__close-button.css");
 @import url("../blocks/popup/__save-button/popup__save-button.css");
 @import url("../blocks/popup/__save-button-disabled/popup__save-button-disabled.css");
-@import url("../blocks/popup/_type/popup_type_image");
+@import url("../blocks/popup/_type/popup_type_image.css");
 @import url("../blocks/popup/__image-container/popup__image-container.css");
 @import url("../blocks/popup/__image/popup__image.css");
 @import url("../blocks/popup/__image-title/popup__image-title.css");

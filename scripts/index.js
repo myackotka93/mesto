@@ -129,4 +129,3 @@ popupCloses.forEach(function (item) {
 formElement.addEventListener('submit', profileFormSubmit);
 cardElement.addEventListener('submit', cardFormSubmit);
 
-addCardItem();
