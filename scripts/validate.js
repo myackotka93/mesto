@@ -54,19 +54,14 @@ function checkValidityForm(form) {
 
     setButtonState(submitButton, isActive)
 }
-
-function enableValidation() {
-    const forms = document.querySelectorAll(validationConfig.formSelector);
-
-    forms.forEach((form) => {
-        setEventListeners(form);
-
-        form.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
-
-        checkValidityForm(form);
-    });
-}
-
+function enableValidation(config) { 
+    const forms = document.querySelectorAll(config.formSelector); 
+    forms.forEach((form) => { 
+        setEventListeners(form, config);
+        form.addEventListener('submit', (evt) => { 
+            evt.preventDefault(); 
+        }); 
+        checkValidityForm(form, config); 
+    }); 
+} 
 enableValidation(validationConfig);
