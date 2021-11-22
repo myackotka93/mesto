@@ -44,7 +44,7 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <template id="card__template">
+  <template id="card__template" class="default-card">
     <li class="card">
       <button type="button" class="card__button-delete">
         <img class="card__delete" src="./images/delete.svg" alt="Удалить">
@@ -53,7 +53,6 @@
       <div class="card__discription">
         <h2 class="card__title">Домбай</h2>
         <button type="button" class="card__button-like">
-
         </button>
       </div>
     </li>
@@ -65,10 +64,10 @@
       <form class="popup__form popup__form_type_edit" name="edit-form">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input name="name" id="popup-name" class="popup__item popup__item_type_name" type="text" placeholder="Имя" minlength="2" maxlength="40"
-          required novalidate>
+          novalidate required>
         <span id="popup-name-error" class="popup__item-error"></span>
         <input name="job" id="popup-job" class="popup__item popup__item_type_job" type="text" placeholder="Вид деятельности" minlength="2"
-          maxlength="200" required novalidate>
+          maxlength="200" novalidate required>
         <span id="popup-job-error" class="popup__item-error"></span>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -82,10 +81,10 @@
       <form class="popup__form popup__form_type_add" name="add-form">
         <h2 class="popup__title">Новое место</h2>
         <input name="place" id="popup-place" class="popup__item popup__item_type_place" type="text" placeholder="Название" minlength="2"
-          maxlength="40" required novalidate>
+          maxlength="40" novalidate required>
         <span id="popup-place-error" class="popup__item-error"></span>
         <input name="image" id="popup-image" class="popup__item popup__item_type_image" type="url" pattern="https?://.+"
-          placeholder="Ссылка на картинку" required novalidate>
+          placeholder="Ссылка на картинку" novalidate required>
         <span id="popup-image-error" class="popup__item-error"></span>
         <button class="popup__save-button" type="submit">Создать</button>
       </form>
@@ -101,10 +100,8 @@
       <button class="popup__close-button" type="button"></button>
     </div>
   </section>
-
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/initial-cards.js"></script>
-  <script src="./scripts/index.js"></script>
+  
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>

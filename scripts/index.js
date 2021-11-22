@@ -1,16 +1,19 @@
+import { Card } from './Card.js';
+import { initialCards } from './initial-cards.js';
+import { FormValidator, validationConfig } from './validate.js';
+
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const popupCloses = document.querySelectorAll('.popup__close');
 const addButton = document.querySelector('.profile__add-button');
 
-const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const popupAddCard = document.querySelector('.popup_type_add');
 const popupOpenImage = document.querySelector('.popup_type_image');
 
 
-const formElement = document.querySelector('.popup_type_edit')
-const cardElement = document.querySelector('.popup__form_type_add')
+const formElement = document.querySelector('.popup_type_edit');
+const cardElement = document.querySelector('.popup__form_type_add');
 
 const nameInput = document.querySelector('.popup__item_type_name');
 const jobInput = document.querySelector('.popup__item_type_job');
@@ -24,41 +27,31 @@ const profileJob = document.querySelector('.profile__subtitle');
 const imageTitle = document.querySelector('.popup__image-title');
 const imageView = document.querySelector('.popup__image');
 
-const cardTemplate = document.querySelector('#card__template').content;
 const cardList = document.querySelector('.cards__container');
 
-initialCards.forEach((data) => {
-  cardList.append(createCard(data));
-});
+const profileValidator = new FormValidator(validationConfig, formElement);
+profileValidator.enableValidation();
+const addCardValidator = new FormValidator(validationConfig, cardElement);
+addCardValidator.enableValidation();
 
-function createCard(data) {
-  const newCard = cardTemplate.cloneNode(true);
-  const cardTitle = newCard.querySelector('.card__title');
-  cardTitle.textContent = data.name;
+// initialCards.forEach((data) => {
+//   cardList.append(createCard(data));
+// });
 
-  const cardImage = newCard.querySelector('.card__image');
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
+function createCard(name, link) {
+  const card = new Card ({name, link}, '.default-card', openPicture);    
+  return card.getElement();
+}
 
-  newCard.querySelector('.card__button-like').addEventListener('click', (event) => {
-    event.target.classList.toggle('card__button-like_active');
-  });
-
-  newCard.querySelector('.card__button-delete').addEventListener('click', (event) => {
-    event.target.closest('.card').remove();
-  });
-
-  cardImage.addEventListener('click', () => openPicture(data));
-
-  return newCard;
+function addCardItem() {
+  const addCard = initialCards.map(item =>createCard(item.name, item.link));
+  cardList.append(...addCard);
 }
 
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', escapePopup);
-
-
 }
 
 function closePopup(popup) {
@@ -73,10 +66,10 @@ function escapePopup(evt) {
   }
 }
 
-function openPicture(item) {
-  imageTitle.textContent = item.name;
-  imageView.src = item.link;
-  imageView.alt = item.name;
+function openPicture(name, link) {
+  imageTitle.textContent = name;
+  imageView.src = link;
+  imageView.alt = name;
   openPopup(popupOpenImage);
 }
 
@@ -84,18 +77,17 @@ function openEditProfilePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(popupEditProfile);
-  const form = popup.querySelector('.popup__form');
-  if (form) {
-    checkValidityForm(form);
-  }
+  // const form = popup.querySelector('.popup__form');
+  // if (form) {
+  //   checkValidityForm(form);
+  // }
 }
 
 function cardFormSubmit(evt) {
   evt.preventDefault();
   const newCardName = placeInput.value;
   const newCardLink = imageInput.value;
-  const newCard = createCard({name: newCardName, link: newCardLink});
-  cardList.prepend(newCard);
+  cardList.prepend(createCard(newCardName, newCardLink));
   closePopup(popupAddCard);
 }
 
@@ -129,3 +121,5 @@ popupCloses.forEach(function (item) {
 formElement.addEventListener('submit', profileFormSubmit);
 cardElement.addEventListener('submit', cardFormSubmit);
 
+
+addCardItem();

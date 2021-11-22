@@ -1,4 +1,4 @@
-const validationConfig = {
+export const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__item',
     submitButtonSelector: '.popup__save-button',
@@ -6,62 +6,66 @@ const validationConfig = {
     buttonInvalidClass: 'button_disabled',
 };
 
-function showError(form, input, config) {
-    const error = form.querySelector(`#${input.id}-error`);
-    error.textContent = input.validationMessage;
-    input.classList.add(config.inputInvalidClass);
-}
-
-function hideError(form, input, config) {
-    const error = form.querySelector(`#${input.id}-error`);
-    error.textContent = '';
-    input.classList.remove(config.inputInvalidClass);
-}
-
-function checkInputValidation(form, input, config) {
-    if (!input.validity.valid) {
-        showError(form, input, config);
-    } else {
-        hideError(form, input, config);
+export class FormValidator {
+    constructor(config, form) {
+      this._form = form;
+      this._inputSelector = config.inputSelector;
+      this._submitButtonSelector = config.submitButtonSelector;
+      this._inputInvalidCLass = config.inputInvalidCLass;
+      this._buttonInvalidClass = config.buttonInvalidClass;
+      this._button = this._form.querySelector(this._submitButtonSelector);
+      this._inputList = this._form.querySelectorAll(this._inputSelector);
     }
-}
-function setButtonState(button, isActive, config) {
-    if (isActive) {
-        button.classList.remove(config.buttonInvalidClass);
-        button.disabled = false;
-    } else {
-        button.classList.add(config.buttonInvalidClass);
-        button.disabled = true;
+
+    _showError(input) {
+      const error = this._form.querySelector(`#${input.id}-error`);
+      error.textContent = input.validationMessage;
+      input.classList.add(this._inputInvalidCLass);
+    };  
+
+    _hideError(input) {
+      const error = this._form.querySelector(`#${input.id}-error`);
+      error.textContent = "";
+      input.classList.remove(this._inputInvalidCLass);
+    }; 
+
+   _checkInputValidity(input) {
+      if(input.validity.valid){
+        this._hideError(input);
+      } else {
+        this._showError(input);
+      }
+    }; 
+
+    _setButtonState(isActive) {
+      if(isActive) {
+        this._button.classList.remove(this._buttonInvalidClass);
+        this._button.disabled = false;
+      } else {
+        this._button.classList.add(this._buttonInvalidClass);
+        this._button.disabled = true;
+      }
     }
-}
 
-function setEventListeners(form, config) {
-    const inputsList = form.querySelectorAll(config.inputSelector);
-    const submitButton = form.querySelector(config.submitButtonSelector);
-
-    inputsList.forEach((input) => {
-        input.addEventListener('input', () => {
-            checkInputValidation(form, input, config);
-            setButtonState(submitButton, form.checkValidity(), config);
+    _setEventListeners() {
+      this._inputList.forEach(input => {
+        input.addEventListener('input', (evt) => {
+          this._checkInputValidity(input);
+          this._setButtonState(this._form.checkValidity());
         });
-    });
-}
+      })
+    }
 
-function checkValidityForm(form, config) {
-    const submitButton = form.querySelector(config.submitButtonSelector);
-    const isActive = form.checkValidity();
-    
-    setButtonState(submitButton, isActive, config)
-}
+    resetValidation() {
+      this._inputList.forEach((inputElement) => {
+        this._hideError(inputElement)
+      });
+      this._setButtonState(this._form.checkValidity());
+    }
 
-function enableValidation(config) { 
-    const forms = document.querySelectorAll(config.formSelector); 
-    forms.forEach((form) => { 
-        setEventListeners(form, config);
-        form.addEventListener('submit', (evt) => { 
-            evt.preventDefault(); 
-        }); 
-        checkValidityForm(form, config); 
-    }); 
-} 
-enableValidation(validationConfig);
+    enableValidation() {
+      this._setEventListeners()
+      this._form.addEventListener('submit', () =>
+        this._setButtonState(this._form.checkValidity()))
+      }
+}
