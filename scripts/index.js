@@ -1,6 +1,6 @@
 import { Card } from './Card.js';
-import { initialCards } from './initial-cards.js';
-import { FormValidator, validationConfig } from './validate.js';
+import { initialCards } from './initialCards.js';
+import { FormValidator, validationConfig } from './FormValidator.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
@@ -12,7 +12,7 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const popupOpenImage = document.querySelector('.popup_type_image');
 
 
-const formElement = document.querySelector('.popup_type_edit');
+const formElement = document.querySelector('.popup__form_type_edit');
 const cardElement = document.querySelector('.popup__form_type_add');
 
 const nameInput = document.querySelector('.popup__item_type_name');
@@ -76,11 +76,10 @@ function openPicture(name, link) {
 function openEditProfilePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+
+  profileValidator.checkValidityForm();
   openPopup(popupEditProfile);
-  // const form = popup.querySelector('.popup__form');
-  // if (form) {
-  //   checkValidityForm(form);
-  // }
+
 }
 
 function cardFormSubmit(evt) {

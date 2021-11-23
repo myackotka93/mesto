@@ -49,9 +49,9 @@ export class FormValidator {
 
     _setEventListeners() {
       this._inputList.forEach(input => {
-        input.addEventListener('input', (evt) => {
+        input.addEventListener('input', () => {
           this._checkInputValidity(input);
-          this._setButtonState(this._form.checkValidity());
+          this.checkValidityForm();
         });
       })
     }
@@ -63,9 +63,12 @@ export class FormValidator {
       this._setButtonState(this._form.checkValidity());
     }
 
+    checkValidityForm() {
+      this._setButtonState(this._form.checkValidity());
+    }
+
     enableValidation() {
-      this._setEventListeners()
-      this._form.addEventListener('submit', () =>
-        this._setButtonState(this._form.checkValidity()))
+      this._setEventListeners();
+      this.checkValidityForm();
       }
 }

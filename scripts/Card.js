@@ -24,11 +24,11 @@ export class Card {
     }
 
     _getTemplate() {
-      const CardElement = document
+      const cardElement = document
       .querySelector(this._cardSelector)
       .content
       .cloneNode(true);
-      return CardElement;
+      return cardElement;
     }
 
     _toggleLike(evt) {
@@ -42,14 +42,14 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._likeButton.addEventListener('click', this._toggleLike);
-        
-        this._removeButton.addEventListener('click', this._removeElement);
-
-        this._elementImage.addEventListener('click', () => {
-            this._funcOpenPicture(this._name, this._link);
-        }); 
+      this._likeButton.addEventListener('click', this._toggleLike.bind(this));
+      this._removeButton.addEventListener('click', this._removeElement.bind(this));
+  
+      this._elementImage.addEventListener('click', () => {
+        this._funcOpenPicture(this._name, this._link);
+      });
     }
+  
 
     _destroyEventListener() {
         this._likeButton.removeEventListener('click', this._toggleLike);
