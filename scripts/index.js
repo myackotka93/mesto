@@ -100,6 +100,7 @@ function profileFormSubmit(evt) {
 editButton.addEventListener('click', openEditProfilePopup);
 addButton.addEventListener('click', () => {
   cardElement.reset()
+  addCardValidator.checkValidityForm();
   openPopup(popupAddCard)
 });
 
