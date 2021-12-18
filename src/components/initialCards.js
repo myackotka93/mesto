@@ -5,15 +5,15 @@ export const initialCards = [
     },
     {
       name: 'Ладожские шхеры',
-      link: './images/ladoga.jpg'
+      link: 'https://photocentra.ru/images/main94/943384_main.jpg'
     },
     {
       name: 'Мыс Фиолент',
-      link: './images/mysfiolent.jpg'
+      link: 'https://photocentra.ru/images/main60/604297_main.jpg'
     },
     {
       name: 'Териберка',
-      link: './images/teriberka.jpg'
+      link: 'https://www.murmansk.kp.ru/share/i/12/11233079/inx960x640.jpg'
     },
     {
       name: 'Камчатка',
