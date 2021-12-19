@@ -42,6 +42,7 @@ const popupCardForm = new PopupWithForm('.popup_type_add', (item) => {
 
 addButton.addEventListener('click', () => {
     popupCardForm.open();
+    addCardValidator.checkValidityForm();
     popupCardForm.setEventListeners();
 })
 

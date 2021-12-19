@@ -4,8 +4,6 @@ export class Card {
       this._funcOpenPicture = funcOpenPicture;
       this._name = data.name;
       this._link = data.link;
-      this._toggleLike = this._toggleLike.bind(this);
-      this._removeElement = this._removeElement.bind(this);
       this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.card');
  }
 
