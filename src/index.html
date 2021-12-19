@@ -58,7 +58,7 @@
   <section class="popup popup_delete-card">
     <div class="popup__area popup__close"></div>
     <div class="popup__container">
-      <form name="card-deleted" class="popup__form popup_form_type_delete">
+      <form name="card-deleted" class="popup__form popup__form_type_delete">
         <h2 class="popup__title">Вы уверены?</h2>
           <button class="popup__save-button" type="submit">Да</button>                   
       </form>
@@ -70,8 +70,8 @@
     <div class="popup__area popup__close"></div>
     <div class="popup__container">
       <form name="profile-avatar-image" class='popup__form popup__form_type_avatar'>
-        <h2 class="form__title">Обновить аватар</h2>
-        <fieldset class="form__content form__avatar-info">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <fieldset class="popup__content popup__avatar-info">
           <input name="avatar" id="user-avatar" class="popup__item popup__item_type_card-name" placeholder="Ссылка на картинку" type="url" novalidate required>
           <span id="user-avatar-error" class="popup__item-error"></span>
         </fieldset>
