@@ -3,19 +3,22 @@ export class Card {
       this._cardSelector = cardSelector;
       this._funcOpenPicture = funcOpenPicture;
       this._name = data.name;
-      this._link = data.link;  
+      this._link = data.link;
+      this._toggleLike = this._toggleLike.bind(this);
+      this._removeElement = this._removeElement.bind(this);
+      this._cardTemplate = document.querySelector(this._cardSelector).content.querySelector('.card');
  }
 
     getElement() {
-      this._element =this._getTemplate();
+      this._element = this._cardTemplate.cloneNode(true);
 
-      const cardImage = this._element.querySelector('.card__image');
-      cardImage.src = this._link;
-      cardImage.alt = this._name;
+      this._elementImage = this._element.querySelector('.card__image');
+      this._elementImage.src = this._link;
+      this._elementImage.alt = this._name;
 
       this._likeButton = this._element.querySelector('.card__button-like');
       this._removeButton = this._element.querySelector('.card__button-delete');
-      this._elementImage = this._element.querySelector('.card__image');
+      
 
       this._element.querySelector('.card__title').textContent = this._name;
       this._setEventListeners();
@@ -23,21 +26,11 @@ export class Card {
       return this._element;
     }
 
-    _getTemplate() {
-      const cardElement = document
-      .querySelector(this._cardSelector)
-      .content
-      .cloneNode(true);
-      return cardElement;
+    _toggleLike() {
+        this._likeButton.classList.toggle('card__button-like_active');
     }
-
-    _toggleLike(evt) {
-        const elementTarget = evt.target;
-        elementTarget.classList.toggle('card__button-like_active');
-    }
-    _removeElement(evt) {
-        const elementTarget = evt.target.closest('.card');
-        elementTarget.remove();
+    _removeElement() {
+        this._element.remove();
         this._destroyEventListener()
     }
 
