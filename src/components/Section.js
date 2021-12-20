@@ -1,5 +1,6 @@
 export class Section {
-    constructor  (containerSelector) {
+    constructor(containerSelector) {
+        console.log(containerSelector);
         this._container = document.querySelector(containerSelector);
     }
 

@@ -1,5 +1,5 @@
 export class Popup {
-    constructor (selectorPopupName) {
+    constructor(selectorPopupName) {
         this._selectorPopup = document.querySelector(selectorPopupName);
         this._selectorButtonClose = this._selectorPopup.querySelector('.popup__close-button');
         this._selectorCloseArea = this._selectorPopup.querySelector('.popup__close.popup__area')
@@ -8,14 +8,15 @@ export class Popup {
         this.close = this.close.bind(this);
     }
 
-    open() {
+    open(props) {
+        this._props = props;
         document.addEventListener('keydown', this._handleEscClose);
         this._selectorPopup.classList.add(this._popupStyle);
     }
 
     close() {
         document.removeEventListener('keydown', this._handleEscClose);
-        this._selectorPopup.classList.remove(this._popupStyle);        
+        this._selectorPopup.classList.remove(this._popupStyle);
     }
 
     setEventListeners() {

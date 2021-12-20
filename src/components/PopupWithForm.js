@@ -1,44 +1,49 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithForm extends Popup {
-    constructor(selectorPopupName, callBackSubmitForm) {
-        super(selectorPopupName);
-        this._callBackSubmitForm = callBackSubmitForm;
-        this._selectorForm = this.selectorPopup.querySelector('.popup__form');
-        this._formSubmitter = this._formSubmitter.bind(this);        
-        this._inputList = this._selectorForm.querySelectorAll('.popup__item');
-    }
+  constructor(selectorPopupName, callBackSubmitForm) {
+    super(selectorPopupName);
+    this._callBackSubmitForm = callBackSubmitForm;
+    this._selectorForm = this.selectorPopup.querySelector('.popup__form');
+    this._formSubmitter = this._formSubmitter.bind(this);
+    this._inputList = this._selectorForm.querySelectorAll('.popup__item');
+    this._submitButton = this._selectorForm.querySelector('.popup__save-button');
+  }
 
-    setEventListeners() {
-        super.setEventListeners();
-        this._selectorForm.addEventListener('submit', this._formSubmitter);
-    }
+  renderLoading(isLoading) {
+    this._submitButton.textContent = isLoading ? 'Сохранение...' : 'Сохранить';
+  }
 
-    close() {
-        this._selectorForm.reset();
-        super.close();
-    }
+  setEventListeners() {
+    super.setEventListeners();
+    this._selectorForm.addEventListener('submit', this._formSubmitter);
+  }
 
-    _getInputValues() {
-        const formValues = {};
+  close() {
+    this._selectorForm.reset();
+    super.close();
+  }
 
-        this._inputList.forEach(input => {
-            formValues[input.name] = input.value;
-        });
+  _getInputValues() {
+    const formValues = {};
 
-        return formValues;
-    }
+    this._inputList.forEach(input => {
+      formValues[input.name] = input.value;
+    });
 
-    setInputValues(data) {
-        this._inputList.forEach(input => {
-            if (data[input.name]) {
-                input.value = data[input.name];
-            }
-        });
-    }
+    return formValues;
+  }
 
-    _formSubmitter(evt) {
-        evt.preventDefault();
-        this._callBackSubmitForm(this._getInputValues());
-    }
+  setInputValues(data) {
+    this._inputList.forEach(input => {
+      if (data[input.name]) {
+        input.value = data[input.name];
+      }
+    });
+  }
+
+  _formSubmitter(evt) {
+    evt.preventDefault();
+    this._callBackSubmitForm(this._getInputValues());
+  }
 }

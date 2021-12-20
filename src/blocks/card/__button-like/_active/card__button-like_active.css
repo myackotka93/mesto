@@ -1,5 +1,5 @@
 .card__button-like_active {
-    background: url('../../../../images/fill.png') center no-repeat;
+    background: url('../../../../images/heart-filled.svg') center no-repeat;
     width: 22px;
     height: 19px;
     opacity: 1;

@@ -1,105 +1,86 @@
 export class Api {
-    constructor(url, password) {
-        this._password = password;
-        this._url = url;
-    }
-    
-    saveProfile(name, about) {
-        return this._patchRequest('/users/me', {
-            name,
-            about
-        });
-    }
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
 
-    getProfile() {
-        return this._getRequest('/users/me');        
+  _request(res) {
+    if (res.ok) {
+      return res.json();
     }
+    return Promise.reject(`Ошибка ${res.status}`);
+  }
 
-    saveProfileAvatar(url) {
-        return this._patchRequest('/users/me/avatar', {
-            avatar: url
-        });
-    }
+  saveProfile(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about
+      })
+    })
+      .then(this._request)
+  }
 
-    createCard(name, link) {
-        return this._postRequest('/cards', {
-            name,
-            link
-        });
-    }
+  getProfile() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
+    })
+      .then(this._request)
+  }
 
-    deleteCard(cardId) {
-        return this._deleteRequest(`/cards/${cardId}`);
-    }
-    
-    getCards() {
-        return this._getRequest('/cards');        
-    }
+  saveProfileAvatar(url) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: url
+      })
+    })
+      .then(this._request)
+  }
 
-    putLike(cardId) {
-        return this._putRequest(`/cards/likes/${cardId}`);
-    }
+  createCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    })
+      .then(this._request)
+  }
 
-    takeLike(cardId) {
-        return this._deleteRequest(`/cards/likes/${cardId}`);
-    }
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._request)
+  }
 
-    _deleteRequest(url) {
-        return this._request(url, {
-            method: 'DELETE',
-            headers: {
-                authorization: this._password
-            },
-        });
-    }
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers
+    })
+      .then(this._request)
+  }
 
-    _putRequest(url) {
-        return this._request(url, {
-            method: 'PUT',
-            headers: {
-                authorization: this._password
-            },
-        });
-    }
+  putLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+      .then(this._request)
+  }
 
-    _postRequest(url, body) {
-        return this._request(url, {
-            method: 'POST',
-            headers: {
-                authorization: this._password,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body || {})
-        });
-    }
-
-    _patchRequest(url, body) {
-        return this._request(url, {
-            method: 'PATCH',
-            headers: {
-                authorization: this._password,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body || {})
-        });
-    }
-
-    _getRequest(url) {
-        return this._request(url, {
-            method: 'GET',
-            headers: {
-                authorization: this._password
-            }
-        });
-    }
-
-    _request(url, options) {
-        return fetch(`${this._url}${url}`, options)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-    }
+  takeLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._request)
+  }
 }

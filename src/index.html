@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +18,12 @@
 
   <main class="main">
     <section class="profile">
-      <img src="<%=require('./images/jak_iv_kusto.png')%>" alt="Аватар" class="profile__avatar-image">
+      <button class="profile__avatar-button" type="button">
+        <div class="profile__avatar-edit-button-container">
+          <img class="profile__avatar-edit-button" src="<%=require('./images/pen.svg')%>" alt="Кнопка Редактировать">
+        </div>
+        <img src="<%=require('./images/jak_iv_kusto.png')%>" alt="Аватар" class="profile__avatar-image profile__avatar">
+      </button>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button type="button" class="profile__edit-button">
@@ -49,18 +55,20 @@
       <img src="#" alt="Домбай" class="card__image">
       <div class="card__discription">
         <h2 class="card__title">Домбай</h2>
-        <button type="button" class="card__button-like">
-        </button>
+        <div class="card__like-container">
+          <button type="button" class="card__button-like"></button>
+          <span class="card__like-count"></span>
+        </div>
       </div>
     </li>
   </template>
 
-  <section class="popup popup_delete-card">
+  <section class="popup popup_delete-card popup_type_delete">
     <div class="popup__area popup__close"></div>
     <div class="popup__container">
       <form name="card-deleted" class="popup__form popup__form_type_delete">
         <h2 class="popup__title">Вы уверены?</h2>
-          <button class="popup__save-button" type="submit">Да</button>                   
+        <button class="popup__save-button" type="submit">Да</button>
       </form>
       <button class="popup__close-button popup__close" type="button" aria-label="Закрыть"></button>
     </div>
@@ -71,14 +79,13 @@
     <div class="popup__container">
       <form name="profile-avatar-image" class='popup__form popup__form_type_avatar'>
         <h2 class="popup__title">Обновить аватар</h2>
-        <fieldset class="popup__content popup__avatar-info">
-          <input name="avatar" id="user-avatar" class="popup__item popup__item_type_card-name" placeholder="Ссылка на картинку" type="url" novalidate required>
-          <span id="user-avatar-error" class="popup__item-error"></span>
-        </fieldset>
+        <input name="avatar" id="user-avatar" class="popup__item popup__item_type_card-name"
+          placeholder="Ссылка на картинку" type="url" novalidate required>
+        <span id="user-avatar-error" class="popup__item-error"></span>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
       <button class="popup__close-button popup__close" type="button" aria-label="Закрыть"></button>
-    </div>      
+    </div>
   </section>
 
   <section class="popup popup_type_edit">
@@ -86,11 +93,11 @@
     <div class="popup__container">
       <form class="popup__form popup__form_type_edit" name="edit-form">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input name="name" id="popup-name" class="popup__item popup__item_type_name" type="text" placeholder="Имя" minlength="2" maxlength="40"
-          novalidate required>
+        <input name="name" id="popup-name" class="popup__item popup__item_type_name" type="text" placeholder="Имя"
+          minlength="2" maxlength="40" novalidate required>
         <span id="popup-name-error" class="popup__item-error"></span>
-        <input name="prof" id="popup-job" class="popup__item popup__item_type_job" type="text" placeholder="Вид деятельности" minlength="2"
-          maxlength="200" novalidate required>
+        <input name="prof" id="popup-job" class="popup__item popup__item_type_job" type="text"
+          placeholder="Вид деятельности" minlength="2" maxlength="200" novalidate required>
         <span id="popup-job-error" class="popup__item-error"></span>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -103,8 +110,8 @@
     <div class="popup__container">
       <form class="popup__form popup__form_type_add" name="add-form">
         <h2 class="popup__title">Новое место</h2>
-        <input name="name" id="popup-place" class="popup__item popup__item_type_place" type="text" placeholder="Название" minlength="2"
-          maxlength="40" novalidate required>
+        <input name="name" id="popup-place" class="popup__item popup__item_type_place" type="text"
+          placeholder="Название" minlength="2" maxlength="40" novalidate required>
         <span id="popup-place-error" class="popup__item-error"></span>
         <input name="link" id="popup-image" class="popup__item popup__item_type_image" type="url" pattern="https?://.+"
           placeholder="Ссылка на картинку" novalidate required>
