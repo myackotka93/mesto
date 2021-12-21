@@ -4,8 +4,8 @@ export class UserInfo {
     this._name = '';
     this._about = '';
     this._avatar = '';
-    this._selectorUser = document.querySelector(selectorUserName);
-    this._selectorProf = document.querySelector(selectorUserProf);
+    this._user = document.querySelector(selectorUserName);
+    this._prof = document.querySelector(selectorUserProf);
     this._avatarImg = document.querySelector(avatar);
   }
 
@@ -15,8 +15,8 @@ export class UserInfo {
 
   getUserInfo() {
     return {
-      name: this._selectorUser.textContent, 
-      prof: this._selectorProf.textContent,            
+      name: this._user.textContent, 
+      prof: this._prof.textContent,            
     }
   }
 
@@ -33,8 +33,8 @@ export class UserInfo {
     this._about = data.about;
     this._avatar = data.avatar;
 
-    this._selectorUser.textContent = this._name;
-    this._selectorProf.textContent = this._about;
+    this._user.textContent = this._name;
+    this._prof.textContent = this._about;
     this.updateAvatar(this._avatar);
   }
 }

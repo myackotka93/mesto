@@ -4,7 +4,7 @@ export class Api {
     this._headers = headers;
   }
 
-  _request(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -20,14 +20,14 @@ export class Api {
         about: about
       })
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   saveProfileAvatar(url) {
@@ -38,7 +38,7 @@ export class Api {
         avatar: url
       })
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   createCard(name, link) {
@@ -50,7 +50,7 @@ export class Api {
         link: link
       })
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   deleteCard(cardId) {
@@ -58,14 +58,14 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   putLike(cardId) {
@@ -73,7 +73,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers,
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 
   takeLike(cardId) {
@@ -81,6 +81,6 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then(this._request)
+      .then(this._checkResponse)
   }
 }

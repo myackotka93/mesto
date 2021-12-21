@@ -4,10 +4,10 @@ export class PopupWithForm extends Popup {
   constructor(selectorPopupName, callBackSubmitForm) {
     super(selectorPopupName);
     this._callBackSubmitForm = callBackSubmitForm;
-    this._selectorForm = this.selectorPopup.querySelector('.popup__form');
+    this._form = this._popup.querySelector('.popup__form');
     this._formSubmitter = this._formSubmitter.bind(this);
-    this._inputList = this._selectorForm.querySelectorAll('.popup__item');
-    this._submitButton = this._selectorForm.querySelector('.popup__save-button');
+    this._inputList = this._form.querySelectorAll('.popup__item');
+    this._submitButton = this._form.querySelector('.popup__save-button');
   }
 
   renderLoading(isLoading) {
@@ -16,11 +16,11 @@ export class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._selectorForm.addEventListener('submit', this._formSubmitter);
+    this._form.addEventListener('submit', this._formSubmitter);
   }
 
   close() {
-    this._selectorForm.reset();
+    this._form.reset();
     super.close();
   }
 

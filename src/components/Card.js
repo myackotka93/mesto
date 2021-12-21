@@ -80,11 +80,4 @@ export class Card {
       this._handleCardClick(this._name, this._link);
     });
   }
-
-  _destroyEventListener() {
-    this._likeButton.removeEventListener('click', this._toggleLike);
-    this._removeButton.removeEventListener('click', () => {
-      this._handleDeleteIconClick(this);
-    });
-  }
 }

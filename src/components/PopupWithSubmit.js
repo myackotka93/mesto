@@ -10,13 +10,18 @@ export class PopupWithSubmit extends Popup {
     }
 
     renderLoading(isLoading) {
-        this._submitButton.textContent = isLoading ? 'Удаление...' : 'Удалено';
+        this._submitButton.textContent = isLoading ? 'Удаление...' : 'Да';
     }
 
     setEventListeners() {
         super.setEventListeners();
         this._selectorForm.addEventListener('submit', this._formSubmitter);
     }
+
+    open(props) {
+        super.open()
+        this._props = props;
+    } 
 
     _formSubmitter(evt) {
         evt.preventDefault();
