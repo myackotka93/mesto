@@ -117,7 +117,7 @@ addButton.addEventListener('click', () => {
 })
 
 const popupEditForm = new PopupWithForm('.popup_type_edit', (item) => {
-  popupAvatarForm.renderLoading(true);
+  popupEditForm .renderLoading(true);
   api.saveProfile(item.name, item.prof)
     .then((data) => {
       userInfo.setUserInfo(data);
