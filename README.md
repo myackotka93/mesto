@@ -22,7 +22,7 @@ https://myackotka93.github.io/mesto/
 ## Запуск проекта:
 1. Клонировать репозиторий
 
-git clone https://github.com/kateworks/mesto.git
+git clone https://github.com/myackotka93/mesto.git
 
 2. Установить зависимости
 
